@@ -1,1 +1,1 @@
-# Sentiment Rating Widget - test
+# Sentiment Rating Widget
