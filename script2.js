@@ -1,4 +1,6 @@
-let emotions = {
+document.addEventListener('DOMContentLoaded', () => {
+  // Reset emotions to all 0s
+  emotions = {
     upset: 0,
     unhappy: 0,
     neutral: 0,
@@ -6,26 +8,39 @@ let emotions = {
     joyful: 0,
     total: 0
   };
-  
-  function submitSentiment(event) {
-    //get the emotion submitted
-    const selectedEmotion = document.querySelector('input[name="feeling"]:checked').value;
-  
-    //update the counts of the emotion and total
-    emotions[selectedEmotion]++;
-    emotions["total"]++;
-  
-    
-    
-    const breakdown = document.getElementById("breakdown");
-    Object.keys(emotions).forEach(emotion => {
+
+  // Reset the percentages in the HTML
+  Object.keys(emotions).forEach(emotion => {
     if (emotion !== "total") {
       const pctElement = document.getElementById(`${emotion}_pct`);
-      const percentage = emotions[emotion] / emotions["total"] * 100;
-      pctElement.textContent = `${percentage.toFixed(2)}% of people are feeling ${emotion}`;
+      pctElement.textContent = `0% are feeling ${emotion}`;
     }
   });
-  }
-  
-    
-    
+
+  const form = document.querySelector('.meter');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent form submission
+    submitSentiment();
+  });
+});
+
+
+function submitSentiment() {
+  const selectedEmotion = document.querySelector('input[name="feeling"]:checked').value;
+
+  emotions[selectedEmotion]++;
+  emotions["total"]++;
+
+  // Update the percentages in the HTML
+  const total = emotions["total"];
+  Object.keys(emotions).forEach(emotion => {
+    if (emotion !== "total") {
+      const pctElement = document.getElementById(`${emotion}_pct`);
+      const percentage = emotions[emotion] / total * 100;
+      pctElement.textContent = `${percentage.toFixed(2)}% are feeling ${emotion}`;
+    }
+  });
+
+  // Store the emotions object in localStorage
+  localStorage.setItem('emotions', JSON.stringify(emotions));
+}
