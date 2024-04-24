@@ -1,3 +1,10 @@
+
+* {
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
   /*Borders around both sections with styling*/
 section{
     border: 2px solid #ccc; 
@@ -13,20 +20,20 @@ section{
     align-items:center;
   }
   
-  /* Flex container for emojis */
+  /* Flex container for emojis (form) */
   .meter {
     display: flex;
-    flex-wrap: column; 
-    justify-content: space-between; 
+    flex-direction: row;
+    justify-content: center; 
   }
   
-  /* Adjust spacing between emojis */
+  /* Adjust spacing between emojis (faces) */
   .meter label {
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
     align-items: center;
-    justify-content: column;
-    text-align: center;
+    justify-content: space-evenly;
+
   }
   
   /* Style the submit button */
@@ -37,6 +44,7 @@ section{
   
   /*hover effects for face-icons*/
   .face-icon {
+    display: flex;
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -48,7 +56,7 @@ section{
     transform: scale(1.2);
   }
 
-  /*effects for percentage breakdowns*/
+  /*effects for percentage brreakdowns*/
   #breakdown {
     display: flex;
     flex-wrap: wrap;
