@@ -1,1 +1,113 @@
-/* Test */
+  /*Borders around both sections with styling*/
+section{
+    border: 2px solid #ccc; 
+    padding: 20px; 
+    margin: 20px; 
+    background-image: linear-gradient(white,rgb(209, 162, 73));
+  }
+  
+  /* Flex container for sections */
+  body {
+    display: flex;
+    flex-direction: column; 
+    align-items:center;
+  }
+  
+  /* Flex container for emojis */
+  .meter {
+    display: flex;
+    flex-wrap: column; 
+    justify-content: space-between; 
+  }
+  
+  /* Adjust spacing between emojis */
+  .meter label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: column;
+    text-align: center;
+  }
+  
+  /* Style the submit button */
+  button[type="submit"] {
+    margin-top: 10px; 
+    background-image: linear-gradient(white,rgb(232, 152, 4));
+  }
+  
+  /*hover effects for face-icons*/
+  .face-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  /*hover effects for face-icons*/
+  .face-icon:hover {
+    transform: scale(1.2);
+  }
+
+  /*effects for percentage breakdowns*/
+  #breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.percent {
+    width: 50px;
+    height: 50px;
+    background-color: #3498db;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.percent:hover {
+    transform: scale(1.1);
+}
+
+#upset_pct { background-color: #e74c3c; }
+#unhappy_pct { background-color: #f39c12; }
+#neutral_pct { background-color: #2ecc71; }
+#happy_pct { background-color: #3498db; }
+#joyful_pct { background-color: #9b59b6; }
+
+
+  /*Notes*/
+  /*selector for first section of body*/
+/*section:nth-of-type(1){ 
+    display:flex; 
+    flex-direction: row;
+    justify-content: center;
+}*/
+
+/*section:nth-of-type(2){ /*selector for second section of body*/
+    /*display:flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+}
+
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(254, 251, 251);
+}
+
+/* Target divs within the first section */
+/*.meter{
+    display:flex; /*creates main and cross axis*/
+    /*flex-direction: row; /*makes main axis row format*/
+  /*  justify-content: center; /*alligns across main axis*/
+  /*  align-items: center;/*alligns items somewhere on y-axis*/
+  
+  
