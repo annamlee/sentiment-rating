@@ -1,16 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 2 Sentiment Rating Widget</title>
-    <link rel="stylesheet" href="./style2.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group 2 Sentiment Rating Widget</title>
+<link rel="stylesheet" href="./style2.css">
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .meter {
+    position: relative;
+    width: 400px;
+    height: 150px; 
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .face-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .face-icon:hover {
+    transform: scale(1.2);
+  }
+  .selected {
+    font-weight: bold;
+    color: green;
+  }
+  .meter-line {
+    position: absolute;
+    width: 100%;
+    height: 2px; 
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+  }
+  .branch {
+    width: 1px; 
+    background-color: black;
+  }
+  .upset { left: 20%; }
+  .unhappy { left: 40%; }
+  .neutral { left: 60%; }
+  .joyful { left: 80%; }
+  .happy { left: 100%; }
+  .label {
+    font-size: 12px;
+    margin-top: 20px;
+    color: black;
+  }
+  .selected-label {
+    color: green;
+  }
+  .vertical-line {
+    position: absolute;
+    width: 1px; 
+    background-color: black; 
+    height: 15px; 
+    top: 7.6em; 
+  }
+</style>
 </head>
-
 <body>
-    <p>piao testing0</p>
-    <script src="script2.js"></script>
-</body>
+<script src="script2.js"></script>
+<div class="meter">
+  <div>
+    <img src="upset.svg" alt="Upset" class="face-icon" onclick="selectSentiment('Upset')">
+    <div class="label">Upset</div>
+    <div class="vertical-line upset" style="left: 8%;"></div>
+  </div>
+  <div>
+    <img src="unhappy.svg" alt="Unhappy" class="face-icon" onclick="selectSentiment('Unhappy')">
+    <div class="label">Unhappy</div>
+    <div class="vertical-line unhappy" style="left: 29%;"></div>
+  </div>
+  <div>
+    <img src="neutral.svg" alt="Neutral" class="face-icon" onclick="selectSentiment('Neutral')">
+    <div class="label">Neutral</div>
+    <div class="vertical-line neutral" style="left: 52%;"></div>
+  </div>
+  <div>
+    <img src="joyful.svg" alt="Joyful" class="face-icon" onclick="selectSentiment('Joyful')">
+    <div class="label">Joyful</div>
+    <div class="vertical-line joyful" style="left: 73%;"></div>
+  </div>
+  <div>
+    <img src="happy.svg" alt="Happy" class="face-icon" onclick="selectSentiment('Happy')">
+    <div class="label">Happy</div>
+    <div class="vertical-line happy" style="left: 92%;"></div>
+  </div>
+  <div class="meter-line">
+    <div class="branch Upset"></div>
+    <div class="branch Unhappy"></div>
+    <div class="branch Neutral"></div>
+    <div class="branch Joyful"></div>
+    <div class="branch Happy"></div>
+  </div>
+</div>
+<div class="selected-sentiment" id="selectedSentiment"></div>
+<div class="message" id="message"></div>
+<button onclick="submitSentiment()">Submit</button>
 
+<script>
+  let selectedSentiment = '';
+
+  function selectSentiment(sentiment) {
+    selectedSentiment = sentiment;
+    const allIcons = document.querySelectorAll('.face-icon');
+    allIcons.forEach(icon => {
+      if (icon.alt === sentiment) {
+        icon.classList.add('selected');
+      } else {
+        icon.classList.remove('selected');
+      }
+    });
+    const allLabels = document.querySelectorAll('.label');
+    allLabels.forEach(label => {
+      if (label.textContent === sentiment) {
+        label.classList.add('selected-label'); 
+      } else {
+        label.classList.remove('selected-label');
+    }
+});
+document.getElementById('selectedSentiment').innerHTML = `<b>${sentiment}</b>`;
+document.getElementById('message').textContent = '';
+}
+
+function submitSentiment() {
+let message = '';
+switch (selectedSentiment) {
+  case 'Upset':
+    message = 'You seem upset. Is there anything I can do to help?';
+    break;
+  case 'Unhappy':
+    message = 'I hope things get better for you soon.';
+    break;
+  case 'Neutral':
+    message = 'Thank you for your feedback.';
+    break;
+  case 'Joyful':
+    message = 'Your joy is contagious!';
+    break;
+  case 'Happy':
+    message = 'Your smile lights up the world.';
+    break;
+}
+document.getElementById('message').textContent = message;
+}
+</script>
+</body>
 </html>
