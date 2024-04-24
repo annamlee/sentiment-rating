@@ -18,6 +18,28 @@ function loadEmotions() {
 // Initializes the emotion object
 let emotions = loadEmotions();
 
+//Function that deletes all local storage
+function resetStorage(){
+  localStorage.clear();
+  emotions = {
+    upset: 0,
+    unhappy: 0,
+    neutral: 0,
+    happy: 0,
+    joyful: 0,
+    total: 0
+  };
+
+  //Updates the percentages to 0 in the html
+  updatePercentages(emotions, 0);
+}
+
+//Event listener for resetting
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", () =>{
+  resetStorage();
+});
+
 // Function to update the percentages in the HTML
 function updatePercentages(emotions, total) {
   Object.keys(emotions).forEach(emotion => {
