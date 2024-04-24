@@ -35,4 +35,5 @@ form.addEventListener("submit", (e) => {
   updatePercentages(emotions, total);
 });
 
-
+// Update percentages when page loads
+document.addEventListener('DOMContentLoaded', updatePercentages(emotions, emotions["total"]), false);
