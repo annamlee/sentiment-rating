@@ -1,12 +1,44 @@
-// Initialize emotions object
-let emotions = {
-  upset: 0,
-  unhappy: 0,
-  neutral: 0,
-  happy: 0,
-  joyful: 0,
-  total: 0
-};
+//Function to load emotions from local storage (also to initialize emotions)
+function loadEmotions() {
+  const storedEmotion = localStorage.getItem("emotions");
+  if (storedEmotion != undefined){
+    return JSON.parse(storedEmotion);
+  } else {
+    return {
+      upset: 0,
+      unhappy: 0,
+      neutral: 0,
+      happy: 0,
+      joyful: 0,
+      total: 0  
+    }
+  }
+}
+
+// Initializes the emotion object
+let emotions = loadEmotions();
+
+//Function that deletes all local storage
+function resetStorage(){
+  localStorage.clear();
+  emotions = {
+    upset: 0,
+    unhappy: 0,
+    neutral: 0,
+    happy: 0,
+    joyful: 0,
+    total: 0
+  };
+
+  //Updates the percentages to 0 in the html
+  updatePercentages(emotions, 0);
+}
+
+//Event listener for resetting
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", () =>{
+  resetStorage();
+});
 
 // Function to update the percentages in the HTML
 function updatePercentages(emotions, total) {
@@ -29,6 +61,9 @@ form.addEventListener("submit", (e) => {
 
   emotions[selectedEmotion]++;
   emotions["total"]++;
+
+  //Saves the number to the localStorage
+  localStorage.setItem("emotions", JSON.stringify(emotions));
 
   // Update the percentages in the HTML
   const total = emotions["total"];
