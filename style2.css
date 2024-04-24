@@ -22,8 +22,18 @@ body {
 /* Flex container for emojis (form) */
 .meter {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+}
+
+/* Wrapper for just sentiment faces */
+#sentiments-wrap {
+  display: flex;
+}
+
+/* Visual indication that the face is selected */
+input[type="radio"]:checked + .face-icon{
+    transform: scale(1.2);
 }
 
 /* Adjust spacing between emojis (faces) */
@@ -55,7 +65,7 @@ button[type="submit"] {
   transform: scale(1.2);
 }
 
-/*effects for percentage brreakdowns*/
+/*effects for percentage breakdowns*/
 #breakdown {
   display: flex;
   flex-wrap: wrap;

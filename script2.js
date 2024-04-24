@@ -14,7 +14,7 @@ function updatePercentages(emotions, total) {
     if (emotion !== "total") {
       const pctElement = document.getElementById(`${emotion}_pct`);
       const percentage = total === 0 ? 0 : emotions[emotion] / total * 100;
-      pctElement.textContent = `${percentage.toFixed(2)}% are ${emotion}`;
+      pctElement.textContent = `${percentage.toFixed(2)}%`;
     }
   });
 }
