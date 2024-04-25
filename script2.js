@@ -45,8 +45,8 @@ function updatePercentages(emotions, total) {
   Object.keys(emotions).forEach(emotion => {
     if (emotion !== "total") {
       const pctElement = document.getElementById(`${emotion}_pct`);
-      const percentage = total === 0 ? 0 : emotions[emotion] / total * 100;
-      pctElement.textContent = `${percentage.toFixed(2)}%`;
+      const percentage = total === 0 ? 0 : Math.round(emotions[emotion] / total * 100);
+      pctElement.textContent = `${percentage}%`;
     }
   });
 }
@@ -68,6 +68,9 @@ form.addEventListener("submit", (e) => {
   // Update the percentages in the HTML
   const total = emotions["total"];
   updatePercentages(emotions, total);
+
+  // Reset the form to be unchecked
+  document.querySelector('input[name="feeling"]:checked').checked = false;
 });
 
 // Update percentages when page loads

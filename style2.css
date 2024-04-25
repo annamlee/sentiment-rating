@@ -1,13 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --red: #e74c3c;
+  --orange: #f39c12;
+  --green: #2ecc71;
+  --blue: #3498db;
+  --purple: #9b59b6;
+}
+
 * {
-  font-family: "Jersey 20", sans-serif;
-  font-weight: 300;
+  font-family: "Work Sans", sans-serif;
   font-style: normal;
 }
 
-/*Border around meter with styling*/
+h2 {
+  font-weight: 500;
+}
+
+section {
+  border-radius: 20px;
+  padding: 20px 40px;
+}
+
+/*Meter container styling*/
 #meter-section {
-  padding: 20px;
-  margin: 20px;
+  margin: 10px;
   background-image: linear-gradient(to bottom left, rgb(246, 194, 235), rgb(244, 240, 205), white);
 }
 
@@ -16,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: linear-gradient(180deg, hsla(42, 98%, 76%, 0.7) 0%, hsla(12, 100%, 76%, .7) 32%, hsla(305, 21%, 49%, .7) 86%, hsla(263, 24%, 43%, .7) 100%);
 }
 
 /* Flex container for emojis (form) */
@@ -28,12 +46,47 @@ body {
 /* Wrapper for just sentiment faces */
 #sentiments-wrap {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
+  margin-bottom: 40px;
 }
 
-/* Visual indication that the face is selected */
-input[type="radio"]:checked + .face-icon{
-    transform: scale(1.2);
+/* Make radio button visually invisible */
+input[name="feeling"] {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+/* Sentiment selection labels */
+.label {
+  font-weight: 400;
+}
+
+/* Visual indication that the emotion is selected */
+input[type="radio"]:checked+.face-icon {
+  transform: scale(1.2);
+}
+
+input[type="radio"]:checked+.face-icon+#upset-label {
+  color: var(--red);
+}
+
+input[type="radio"]:checked+.face-icon+#unhappy-label {
+  color: var(--orange);
+}
+
+input[type="radio"]:checked+.face-icon+#neutral-label {
+  color: var(--green);
+}
+
+input[type="radio"]:checked+.face-icon+#happy-label {
+  color: var(--blue);
+}
+
+input[type="radio"]:checked+.face-icon+#joyful-label {
+  color: var(--purple);
 }
 
 /* Adjust spacing between emojis (faces) */
@@ -48,14 +101,16 @@ input[type="radio"]:checked + .face-icon{
 /* Style the submit button */
 button[type="submit"] {
   margin-top: 10px;
-  background-image: gray;
+  width: 50%;
+  align-self: center;
+  border: 2px solid grey;
 }
 
 /*hover effects for face-icons*/
 .face-icon {
   display: flex;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -65,12 +120,24 @@ button[type="submit"] {
   transform: scale(1.2);
 }
 
+button {
+  background-color: white;
+  box-shadow: purple;
+  font-size: 15px;
+  padding: 12px 30px;
+  border-radius: 50px;
+}
+
+button:hover {
+  font-weight: 500;
+  background-color: #feda84;
+}
+
 /*Border around breakdown section with styling*/
 #breakdown-section {
   color: white;
-  padding: 20px;
-  margin: 20px;
-  background-color: #045964;
+  margin: 10px;
+  background-color: #43457f;
 }
 
 /*effects for percentage breakdowns*/
@@ -90,12 +157,13 @@ button[type="submit"] {
 }
 
 .percent {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: #56b1ed;
   border-radius: 50%;
   color: white;
-  font-size: 12px;
+  font-size: 18px;
+  font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,51 +171,64 @@ button[type="submit"] {
   transition: transform 0.3s ease;
 }
 
-.percent:hover {
-  transform: scale(1.1);
-}
-
 #upset_pct {
-  background-color: #e74c3c;
+  background-color: var(--red);
 }
 
 #unhappy_pct {
-  background-color: #f39c12;
+  background-color: var(--orange);
 }
 
 #neutral_pct {
-  background-color: #2ecc71;
+  background-color: var(--green);
 }
 
 #happy_pct {
-  background-color: #3498db;
+  background-color: var(--blue);
 }
 
 #joyful_pct {
-  background-color: #9b59b6;
+  background-color: var(--purple);
 }
 
 /* upset emoji color on form */
-input[type="radio"][value="upset"] + .face-icon path {
-  fill: #e74c3c;
+input[type="radio"][value="upset"]+.face-icon path {
+  fill: var(--red);
 }
 
 /* unhappy emoji color on form */
-input[type="radio"][value="unhappy"] + .face-icon path {
-  fill: #f39c12;
+input[type="radio"][value="unhappy"]+.face-icon path {
+  fill: var(--orange);
 }
 
 /* neutral emoji color on form */
-input[type="radio"][value="neutral"] + .face-icon path {
-  fill: #2ecc71;
+input[type="radio"][value="neutral"]+.face-icon path {
+  fill: var(--green);
 }
 
 /* happy emoji color on form */
-input[type="radio"][value="happy"] + .face-icon path {
-  fill: #3498db;
+input[type="radio"][value="happy"]+.face-icon path {
+  fill: var(--blue);
 }
 
 /* joyful emoji color on form */
-input[type="radio"][value="joyful"] + .face-icon path {
-  fill: #9b59b6;
+input[type="radio"][value="joyful"]+.face-icon path {
+  fill: var(--purple);
+}
+
+#reset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: #ff9b83;
+}
+
+#reset:hover {
+  background-color: rgb(230, 103, 89);
+}
+
+footer {
+  width: 100%;
+  text-align: center;
 }
