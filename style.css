@@ -22,12 +22,6 @@ section {
   padding: 20px 40px;
 }
 
-/*Meter container styling*/
-#meter-section {
-  margin: 10px;
-  background-image: linear-gradient(to bottom left, rgb(246, 194, 235), rgb(244, 240, 205), white);
-}
-
 /* Flex container for sections */
 body {
   display: flex;
@@ -36,11 +30,26 @@ body {
   background: linear-gradient(180deg, hsla(42, 98%, 76%, 0.7) 0%, hsla(12, 100%, 76%, .7) 32%, hsla(305, 21%, 49%, .7) 86%, hsla(263, 24%, 43%, .7) 100%);
 }
 
+/* Meter container styling*/
+#meter-section {
+  margin: 10px;
+  background-image: linear-gradient(to bottom left, rgb(246, 194, 235), rgb(244, 240, 205), white);
+}
+
 /* Flex container for emojis (form) */
 .meter {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* Adjust spacing between emojis (faces) */
+.meter label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
 }
 
 /* Wrapper for just sentiment faces */
@@ -89,15 +98,6 @@ input[type="radio"]:checked+.face-icon+#joyful-label {
   color: var(--purple);
 }
 
-/* Adjust spacing between emojis (faces) */
-.meter label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 10px;
-}
-
 /* Style the submit button */
 button[type="submit"] {
   margin-top: 10px;
@@ -106,7 +106,7 @@ button[type="submit"] {
   border: 2px solid grey;
 }
 
-/*hover effects for face-icons*/
+/* Styling and hover effects for face-icons */
 .face-icon {
   display: flex;
   width: 60px;
@@ -115,18 +115,18 @@ button[type="submit"] {
   transition: transform 0.3s ease;
 }
 
-/*hover effects for face-icons*/
 .face-icon:hover {
   transform: scale(1.2);
 }
 
+/* Button styling */
 button {
   background-color: white;
-  box-shadow: purple;
   font-size: 15px;
   padding: 12px 30px;
   border-radius: 50px;
   color: black;
+  transition: transform 0.3s ease;
 }
 
 button:hover {
@@ -134,14 +134,17 @@ button:hover {
   background-color: #feda84;
 }
 
-/*Border around breakdown section with styling*/
+button:active {
+  transform: scale(1.2);
+}
+
+/* Breakdown (analysis) section with styling */
 #breakdown-section {
   color: white;
   margin: 10px;
   background-color: #43457f;
 }
 
-/*effects for percentage breakdowns*/
 #breakdown {
   display: flex;
   flex-wrap: wrap;
@@ -149,7 +152,7 @@ button:hover {
   gap: 20px;
 }
 
-/* center percentage circles above label */
+/* Center percentage circles above label */
 .pct_group {
   display: flex;
   flex-direction: column;
@@ -172,6 +175,7 @@ button:hover {
   transition: transform 0.3s ease;
 }
 
+/* Set background colors */
 #upset_pct {
   background-color: var(--red);
 }
@@ -192,17 +196,17 @@ button:hover {
   background-color: var(--purple);
 }
 
-/* upset emoji color on form */
+/* Upset emoji color on form */
 input[type="radio"][value="upset"]+.face-icon path {
   fill: var(--red);
 }
 
-/* unhappy emoji color on form */
+/* Unhappy emoji color on form */
 input[type="radio"][value="unhappy"]+.face-icon path {
   fill: var(--orange);
 }
 
-/* neutral emoji color on form */
+/* Neutral emoji color on form */
 input[type="radio"][value="neutral"]+.face-icon path {
   fill: var(--green);
 }
@@ -212,7 +216,7 @@ input[type="radio"][value="happy"]+.face-icon path {
   fill: var(--blue);
 }
 
-/* joyful emoji color on form */
+/* Joyful emoji color on form */
 input[type="radio"][value="joyful"]+.face-icon path {
   fill: var(--purple);
 }
