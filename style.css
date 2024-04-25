@@ -126,6 +126,7 @@ button {
   font-size: 15px;
   padding: 12px 30px;
   border-radius: 50px;
+  color: black;
 }
 
 button:hover {
