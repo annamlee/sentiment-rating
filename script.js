@@ -1,5 +1,5 @@
 //Function to load emotions from local storage (also to initialize emotions)
-function loadEmotions() {
+export function loadEmotions() {
   const storedEmotion = localStorage.getItem("emotions");
   if (storedEmotion != undefined){
     return JSON.parse(storedEmotion);
@@ -19,7 +19,7 @@ function loadEmotions() {
 let emotions = loadEmotions();
 
 //Function that deletes all local storage
-function resetStorage(){
+export function resetStorage(){
   localStorage.clear();
   emotions = {
     upset: 0,
@@ -41,7 +41,7 @@ resetButton.addEventListener("click", () =>{
 });
 
 // Function to update the percentages in the HTML
-function updatePercentages(emotions, total) {
+export function updatePercentages(emotions, total) {
   Object.keys(emotions).forEach(emotion => {
     if (emotion !== "total") {
       const pctElement = document.getElementById(`${emotion}_pct`);
@@ -57,21 +57,28 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("Form submitted");
 
-  const selectedEmotion = document.querySelector('input[name="feeling"]:checked').value;
+  const selectedRadio = document.querySelector('input[name="feeling"]:checked');
+  if (selectedRadio) {
+    const selectedEmotion = selectedRadio.value;
+    emotions[selectedEmotion]++;
+    emotions["total"]++;
 
-  emotions[selectedEmotion]++;
-  emotions["total"]++;
+    // Saves the number to the localStorage
+    localStorage.setItem("emotions", JSON.stringify(emotions));
 
-  //Saves the number to the localStorage
-  localStorage.setItem("emotions", JSON.stringify(emotions));
+    // Update the percentages in the HTML
+    const total = emotions["total"];
+    updatePercentages(emotions, total);
 
-  // Update the percentages in the HTML
-  const total = emotions["total"];
-  updatePercentages(emotions, total);
-
-  // Reset the form to be unchecked
-  document.querySelector('input[name="feeling"]:checked').checked = false;
+    // Reset the radio button to be unchecked
+    selectedRadio.checked = false;
+  } else {
+    console.log("No option selected");
+  }
 });
+
 
 // Update percentages when page loads
 document.addEventListener('DOMContentLoaded', updatePercentages(emotions, emotions["total"]), false);
+
+
