@@ -82,20 +82,3 @@ form.addEventListener("submit", (e) => {
 document.addEventListener('DOMContentLoaded', updatePercentages(emotions, emotions["total"]), false);
 
 
-// Function to load emotions from local storage (also to initialize emotions)
-// function loadEmotions() {
-//   const storedEmotion = localStorage.getItem("emotions");
-//   if (storedEmotion !== null) {
-//       return JSON.parse(storedEmotion);
-//   } else {
-//       return {
-//           upset: 0,
-//           unhappy: 0,
-//           neutral: 0,
-//           happy: 0,
-//           joyful: 0,
-//           total: 0
-//       }
-//   }
-// }
-
